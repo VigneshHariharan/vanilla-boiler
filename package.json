@@ -1,0 +1,9 @@
+{
+  "name": "vanilla-boiler",
+  "version": "1.0.0",
+  "description": "template for html,css,js and firebase",
+  "main": "src/index.js",
+  "repository": "https://github.com/VigneshHariharan/vanilla-boiler.git",
+  "author": "VigneshHariharan <phvigneshariharan@gmail.com>",
+  "license": "MIT"
+}
