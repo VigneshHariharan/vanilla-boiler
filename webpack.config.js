@@ -1,10 +1,10 @@
 const path = require("path");
-// const CleanWebpackPlugin = require("clean-webpack-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 const MiniCssWebpackPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 // const { entries, htmlFileNames, htmlPlugins, htmlPluginArgsSettings } = require('./codeSplitting')
 
-// const OptimizeCssPlugin = require('optimize-css-assets-webpack-plugin');
+const OptimizeCssPlugin = require('optimize-css-assets-webpack-plugin');
 // const  { FirstWebpackPlugin } = require('./webPackPlugins');
 // add if it js is not minified
 // const TerserWebpackPlugin = require("terser-webpack-plugin")
@@ -59,17 +59,16 @@ const rules = [
           test: /\.html$/,
           use:["html-loader"]
         },
-        // copy requires to build directory
-        {
-          test: /\.(svg|jpg|jpeg|png|gif)$/,
-          use: {
-            "loader": "file-loader",
-            options: {
-              name:"[path][name].[ext]",
-              outputPath: "assets"
-            }
-          }
-        },
+        // // copy requires to build directory
+        // {
+        //   test: /\.(svg|jpg|jpeg|png|gif)$/,
+        //   use: {
+        //     "loader": "file-loader",
+        //     options: {
+        //       name:"[path][name].[ext]"
+        //     }
+        //   }
+        // },
         //    {
         //   test: /\.html$/,
         //   use: {
@@ -101,17 +100,16 @@ if(process.env.NODE_ENV === 'production') {
 module.exports = {
   mode: "development",
   entry: { source: "./src/pages/index.js", auth: "./src/pages/auth.js" },
-  // entry: entries,
   module:{
       rules,
   },
-  // optimization:{
-  //   // minimizer: [new OptimizeCssPlugin()]
-  // },
+  optimization:{
+    minimizer: [new OptimizeCssPlugin()]
+  },
   output: {
-    path: path.resolve(__dirname, "dist"),
-    // filename:"main.[contenthash].js",
-    // clean: true,
+    path: path.resolve(__dirname, "build"),
+    filename:"main.[contenthash].js",
+    clean: true,
   },
   devServer: {
     static: {
